@@ -1,3 +1,12 @@
+var fs = require("fs");
+var sqlite3 = require("sqlite3").verbose();
+var file = __dirname + "/alumni.sqlite";
+if (!fs.existsSync(file)) {
+	console.log("DB has not been built. Please run 'node makedbfromcsv.js'");
+	process.exit(1)
+}
+global.db = new sqlite3.Database(file);
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');

@@ -80,7 +80,7 @@ fs.readFile("data.csv", "utf8", function(err, data){
                                               ") VALUES (" +
                                                 orNaN(parseInt(data[i][0])) + "," +
                                                 orNaN(parseInt(data[i][1])) + "," +
-                                                orNaN(parseInt(data[i][2])) + "," +
+                                                orNull(data[i][2]) + "," +
                                                 orNaN(parseInt(data[i][3])) + "," +
                                                 orNull(data[i][4]) + "," +
                                                 orNull(data[i][5]) + "," +
@@ -108,8 +108,9 @@ fs.readFile("data.csv", "utf8", function(err, data){
 					if(err){ console.log(insert, err); process.exit(1);}
 					doneCount++;
 					if(doneCount == data.length){
-						clearInterval(spinner);
+						clearInterval(spinnerInv);
 						console.log("Done!");
+						console.log(doneCount + "entries inserted");
 					}
 				});	
 			}
