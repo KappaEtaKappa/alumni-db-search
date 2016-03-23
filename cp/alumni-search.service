@@ -1,0 +1,14 @@
+[Unit]
+Description=Alumni Search Daemon
+Type=forking
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/node /home/admin/alumni-db-search/asdb.js
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
