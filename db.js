@@ -6,6 +6,7 @@ if (!fs.existsSync(file)) {
 	process.exit(1)
 }
 global.db = new sqlite3.Database(file);
+global.hbs = require('hbs');
 
 var express = require('express');
 var path = require('path');
@@ -22,6 +23,10 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
+global.hbs.registerPartials(__dirname + '/views/partials');
+var helpers = require('./views/helpers')(global.hbs);
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

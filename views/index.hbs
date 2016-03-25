@@ -3,6 +3,7 @@
 <head>
 	<title>Member Database</title>
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+	<script type="text/javascript" src="./js/jquery.min.js"></script>
 	<script type="text/javascript" src="./js/bootstrap.min.js"></script>
 	<style>
 		#search-base{
@@ -22,610 +23,156 @@
 			padding-right: 30px;
 		}
 		.search-input{
-			
+			font-size: 1em;
+			margin-right:3px;
+			text-align: center;
 		}
 		#result-base{
 			margin-top: 120px;
 		}
 		.result span{
-			padding-left: 30px;
+			padding-left: 10px;
+			padding-right: 10px;
+			font-size: 1em;
+			margin-right:3px;
+			text-align: center;
 		}
-		.result:nth-child(even) span{
+		.result:nth-child(even){
 			background-color:#f2f2f2;
 
+		}
+		.result:hover{
+			background-color:#dd99ff !important;
+		}
+		#load-more {
+		  display: inline-block;
+		  padding: 0 15px;
+		  position: relative;
+		  cursor: pointer;
+		}
+		#load-more:hover{
+			color:#aa00ff;
+		}
+		#load-more:hover:before,
+		#load-more:hover:after{
+			background:#aa00ff;
+		}
+		#load-more:before,
+		#load-more:after {
+		  background: #ddd;
+		  content: "";
+		  display: block;
+		  height: 1px;
+		  position: absolute;
+		    top: 50%;
+		  width: 400%;
+		}
+		#load-more:before {
+		  right: 100%;
+		}
+		#load-more:after {
+		  left: 100%;
+		}
+		#load-more-container {
+		  overflow: hidden;
+		  text-align: center;
+		  display: block;
+		}
+		.truncated{
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 	</style>
 </head>
 <body>
 	<div id="search-base" class="col-md-12">
 		<div id="search-area"  class="col-md-10 col-md-offset-1 clearfix">
-			<div class="col-md-3">
-				<input class="search-input form-control" type="text" name="firstname" placeholder="First Name"></input>
-			</div>
-			<div class="col-md-3">
-				<input class="search-input form-control" type="text" name="lastname" placeholder="Last Name"></input>
-			</div>
-			<div class="col-md-3">
-				<input class="search-input form-control" type="text" name="Member #" placeholder="Member #"></input>
-			</div>
-			<div class="col-md-3">
-				<input class="search-input form-control" type="text" name="State" placeholder="State"></input>
-			</div>
+			<input class="search-input form-control input-sm" type="text" name="FIRST" placeholder="First"></input>
+			<input class="search-input form-control input-sm" type="text" name="LAST" placeholder="Last"></input>
+			<input class="search-input form-control input-sm" type="text" name="CHAPTER" placeholder="Chapter"></input>
+			<input class="search-input form-control input-sm" type="text" name="INITIATED" placeholder="Initiated"></input>
+			<input class="search-input form-control input-sm" type="text" name="FATHER" placeholder="Father"></input>
+			<input class="search-input form-control input-sm" type="text" name="STATUS" placeholder="Status"></input>
+			<input class="search-input form-control input-sm" type="text" name="GRADUATED" placeholder="Graduated"></input>
+			<input class="search-input form-control input-sm" type="text" name="COMPANY" placeholder="Company"></input>
+			<input class="search-input form-control input-sm" type="text" name="STATE" placeholder="State"></input>
 		</div>
 	</div>
 	<div id="result-base" class="col-md-10 col-md-offset-1">
 		<div id="result-area" class="col-md-12 clearfix">
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
-			<div class="result">
-				<span class="col-md-3" name="firstname">Joseph</span>
-				<span class="col-md-3" name="lastname">Dailey</span>
-				<span class="col-md-3" name="Member #">1001</span>
-				<span class="col-md-3" name="State">WI</span>
-			</div>
+			{{> results}}
 		</div>
 	</div>
 </body>
+<script type="text/javascript">
+	
+	function setByMaxWidth(className){
+		var resultRows = document.getElementsByClassName(className);
+		var max = 0;
+		for(var c=0; c<resultRows.length; c++){
+			max = Math.max(max, resultRows[c].offsetWidth);
+		}
+		for(var c=0; c<resultRows.length; c++){
+			resultRows[c].style.float = "left";
+			resultRows[c].style.width = max + "px";
+		}
+		var input = document.getElementsByName(className.split("-")[1])[0];
+		input.style.float = "left";
+		input.style.width = max + "px";
+		return max;
+	}
+
+	function setAllWidths(){
+		var width = 0;
+		width += setByMaxWidth("data-FIRST");
+		width += setByMaxWidth("data-LAST");
+		width += setByMaxWidth("data-CHAPTER");
+		width += setByMaxWidth("data-INITIATED");
+		width += setByMaxWidth("data-FATHER");
+		width += setByMaxWidth("data-STATUS");
+		width += setByMaxWidth("data-GRADUATED");
+		var comWidth = setByMaxWidth("data-COMPANY");
+		width += setByMaxWidth("data-STATE");
+
+		var maxWidth = $(".result")[0].offsetWidth
+		if(width+comWidth > maxWidth){
+			comWidth = maxWidth-width-30;
+			var comRows = $(".data-COMPANY");
+			for(var c=0; c<comRows.length; c++){
+				comRows[c] = $(comRows[c]);
+				comRows[c].css("width", comWidth + "px");
+				comRows[c].addClass("truncated");
+			}
+			var input = document.getElementsByName("COMPANY")[0];
+			input.style.width = comWidth + "px";
+		}
+	}
+
+	function setLoadMore(){
+		$("#load-more").click(function(){
+			$.ajax(
+				{
+					url: "/next?lastn="+$("#load-more").attr("data-last"),
+					type: "get",
+					dataType: "html",
+					error: function(){
+						$("#load-more").text("ERROR");
+					}, 
+					success: function( strData ){
+						$("#load-more").remove();
+						$("#result-area").append(strData)
+						setAllWidths();
+						setLoadMore();
+					}
+				}							
+			);
+		});
+	}
+
+	$(document).ready(function(){
+		setAllWidths();
+		setLoadMore();
+	})
+</script>
 </html>
