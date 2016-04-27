@@ -9,6 +9,7 @@ global.db = new sqlite3.Database(file);
 global.hbs = require('hbs');
 
 var express = require('express');
+var sqlinjection = require('sql-injection');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -30,6 +31,7 @@ var helpers = require('./views/helpers')(global.hbs);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(sqlinjection);
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

@@ -18,10 +18,31 @@
 	</div>
 </div>
 <script>
+	var searchRequest;
+	var searchInputs;
+
 	$(document).ready(function(){
 		setAllWidths();
 		setLoadMore();
 		$(window).resize(setAllWidths);
+		searchInputs = $("input");
+		for(var i=0; i<searchInputs.length; i++)
+			searchInputs[i] = $(searchInputs[i]);
+		$("input").keyup(function(event){
+			console.log("changed!");
+			if(searchRequest)
+				searchRequest.abort()
+			var searchUrl = "/search?"
+			for(var i=0; i<searchInputs.length; i++)
+				if(searchInputs[i].val())
+					searchUrl += searchInputs[i].attr("name") + "=" + searchInputs[i].val() + "&"; 
+			searchRequest = $.get(searchUrl, function(data){
+				$("#result-area").html(data)
+                                $("#load-more-container").remove();
+				setAllWidths();
+                                setLoadMore();
+			});
+		});
 	});
 
 	function loadMember(uri){

@@ -25,7 +25,6 @@ function setByMaxWidth(className, forceWidth){
 //set all the column widths to their minimum required width
 //squeeze or expand on the company feild
 function setAllWidths(){
-	console.log("FUCK")
 	var width = 0;
 	width += setByMaxWidth("data-FIRST");
 	width += setByMaxWidth("data-LAST");

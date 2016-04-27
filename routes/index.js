@@ -17,9 +17,39 @@ router.get('/next', function(req, res, next) {
 		"GRADUATION, FATHER, STATUS, STATE FROM alumni WHERE NUMBER < "+req.query.lastn+" ORDER BY INITIATED DESC, NUMBER DESC LIMIT 25;",
 		function(err, next10){
 			if(err) console.log(err, next10);
-			res.render('partials/results', { data: next10, last:next10[next10.length-1].NUMBER });		
+			res.render('partials/results', {layout:false, data: next10, last:next10[next10.length-1].NUMBER });		
 		}
 	);
+});
+
+function searchif(name, input, firstTerm){
+	if(name && input)
+		if(firstTerm.hasOccurred){
+			return " OR LOWER("+name+") LIKE LOWER('%"+input+"%')";
+		}else{
+			firstTerm.hasOccurred = true;
+			return " LOWER("+name+") LIKE LOWER('%"+input+"%')";
+		}
+	return "";
+}
+router.get('/search', function(req, res, next) {
+        var firstTerm = {hasOccurred:false};
+	var sqlSearch = "SELECT CHAPTER, NUMBER, LAST, FIRST, COMPANY, INITIATED,"+
+                " GRADUATION, FATHER, STATUS, STATE FROM alumni WHERE " +
+		searchif("FIRST", req.query.FIRST, firstTerm) +
+		searchif("LAST", req.query.LAST, firstTerm) +
+		searchif("COMPANY", req.query.COMPANY, firstTerm) +
+                searchif("FATHER", req.query.FATHER, firstTerm) +
+                searchif("STATUS", req.query.STATUS, firstTerm) +
+                searchif("STATE", req.query.STATE, firstTerm) +
+                searchif("CHAPTER", req.query.CHAPTER, firstTerm) +
+		searchif("INITIATED", new Date(req.query.INITIATED).getTime()/1000, firstTerm) +
+		" ORDER BY INITIATED DESC, NUMBER DESC LIMIT 25;";
+	console.log(sqlSearch);
+        db.all(sqlSearch, function(err, searchResult){
+                if(err) console.log(err);
+        	res.render('partials/results', {layout:false, data: searchResult });
+        });
 });
 
 
@@ -41,7 +71,6 @@ router.get('/help', function(req, res, next) {
 });
 
 router.get('/member', function(req, res, next) {
-	console.log("holla")
 	db.get( "SELECT * FROM alumni WHERE NUMBER = "+req.query.number+";",
 		function(err, member){
 			if(err) console.log(err, member);
