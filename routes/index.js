@@ -37,13 +37,14 @@ router.get('/help', function(req, res, next) {
         	if(err){ console.log(err, member); res.render('err', {message:"Member Not found", error:{status:404, stack:""}});}
 		res.render('help', { 'member':member });
         });
+});
 
 router.get('/member', function(req, res, next) {
 	console.log("holla")
 	db.get( "SELECT * FROM alumni WHERE NUMBER = "+req.query.number+";",
 		function(err, member){
 			if(err) console.log(err, member);
-			res.render('member', { data: member });		
+			res.render('member', { data: member, NUMBER:member.NUMBER });		
 		}
 	);
 });

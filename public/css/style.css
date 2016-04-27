@@ -38,6 +38,9 @@ a {
 #result-base{
 	margin-top: 120px;
 }
+.result{
+	cursor:pointer;
+}
 .result span{
 	padding-left: 10px;
 	padding-right: 10px;
@@ -50,7 +53,8 @@ a {
 
 }
 .result:hover{
-	background-color:#dd99ff !important;
+	background-color:#7E4780 !important;
+	color:white;
 }
 #load-more {
 	display: inline-block;
