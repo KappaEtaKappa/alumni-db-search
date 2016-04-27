@@ -112,3 +112,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#632166', end
 .member-base{
 	padding-top: 120px;
 }
+.inline{
+	display: inline-block;
+}
+h1{
+	font-size:5em;
+}
+h4{
+	color:gray;
+}

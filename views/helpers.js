@@ -25,4 +25,27 @@ module.exports = function(Handlebars) {
 		if(s == null) return "<a href='/help?n="+number+"'>&lt;unknown&gt;</a>";
 		return unescape(s);
 	});
+
+	Handlebars.registerHelper('datepicker', function(name, d){
+		var date = new Date(+d);
+		
+		var ret = "<select name='member-"+name+"-month'>";
+		for(var i=0; i<m.length; i++)
+			if(i == date.getMonth())
+				ret+= '<option  value="'+ i +'" selected>'+ m[i] +'</option>';
+			else
+				ret+= '<option  value="'+ i +'">'+ m[i] +'</option>';
+		ret+="</select>"
+
+		var currentYear = new Date().getFullYear();
+		ret += "<select name='member-"+name+"-year'>";
+                for(var i=currentYear; i>1923; i--)
+                        if(i == date.getFullYear())
+                                ret+= '<option  value="'+ i +'" selected>'+ i +'</option>';
+                        else
+                                ret+= '<option  value="'+ i +'">'+ i +'</option>';
+                ret+="</select>"		
+
+		return ret;
+	});
 }

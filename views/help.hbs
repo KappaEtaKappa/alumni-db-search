@@ -1,5 +1,82 @@
-<h1>Know some info?</h1>
-<form action="/help_submission" method="POST">
-<span>{{members.FIRST}}</span>
 
+<form action="/help_submission" method="POST">
+<div id="search-base" class="col-md-12">
+	<div id="search-area"  class="col-md-10 col-md-offset-1 clearfix">
+</div>
+</div>
+<div id="back-base" class="col-md-10 col-md-offset-1 base"></div>
+<div class="col-md-10 col-md-offset-1 base member-base">
+	<div class="clearfix">
+		<div class="col-md-4">
+			<img id="member-photo" src="/img/member/default.png">
+		</div>
+		<div class="col-md-6">
+                        <h4 class="inline">First Name&nbsp;&mdash;&nbsp;</h4>
+                        <input type="text" name="member-FIRST" class="inline" value="{{data.FIRST}}">
+		<br>
+                        <h4 class="inline">Last Name&nbsp;&mdash;&nbsp;</h4>
+                        <input type="text" name="member-LAST" class="inline" value="{{data.LAST}}">
+		<br>
+			<h4 class="inline">Chapter&nbsp;&mdash;&nbsp;</h4>
+			<input type="text" name="member-CHAPTER" class="inline" value="{{data.CHAPTER}}">
+		<br>
+			<h4 class="inline">Initiated&nbsp;&mdash;&nbsp;</h4>
+			{{{datepicker "initiated" data.INITIATED}}} 
+		<br>
+			<h4 class="inline">Father&nbsp;&mdash;&nbsp;</h4>
+			<input type="text" name="member-FATHER" class="inline" value="{{data.FATHER}}">
+		<br>
+			<h4 class="inline">Status&nbsp;&mdash;&nbsp;</h4>
+			<input type="text" name="member-STATUS" class="inline" value="{{data.STATUS}}">
+		<br>
+			<h4 class="inline">Email&nbsp;&mdash;&nbsp;</h4>
+			<input type="text" name="member-EMAIL" class="inline" value="{{data.EMAIL}}">
+		<br>
+			<h4 class="inline">Phone&nbsp;&mdash;&nbsp;</h4>
+			<input type="text" name="member-PHONE" class="inline" value="{{data.HOME}}">
+		<br>
+			<h4 class="inline">Address&nbsp;&mdash;&nbsp;</h4>
+			<input type="text" name="member-ADDRESS" class="inline" value="{{data.ADDRESS}}">
+		<br>
+			<h4 class="inline">Citys&nbsp;&mdash;&nbsp;</h4>
+			<input type="text" name="member-CITY" class="inline" value="{{data.CITY}}">
+		<br>
+			<h4 class="inline">State&nbsp;&mdash;&nbsp;</h4>	
+			<input type="text" name="member-STATE" class="inline" value="{{data.STATE}}">
+		<br>
+			<h4 class="inline">ZIP&nbsp;&mdash;&nbsp;</h4>
+			<input type="text" name="member-ZIP" class="inline" value="{{data.ZIP}}">
+		<br>
+			<h4 class="inline">Graduate&nbsp;&mdash;&nbsp;</h4>
+			{{{datepicker "graduated" data-GRADUATED}}}
+		<br>
+			<h4 class="inline">State&nbsp;&mdash;&nbsp;</h4>
+			<input type="text" name="member-STATE" class="inline" value="{{data.STATE}}">
+		<br>
+			<h4 class="inline">Company&nbsp;&mdash;&nbsp;</h4>
+			<input type="text" name="member-COMPANY" class="inline" value="{{data.COMPANY}}">
+		</div>
+		<div class="col-md-2">
+			<input type="text" name="editor" placeholder="Your Email">
+			<br>
+			<br>
+			<input type="submit">
+		</div>
+	</div>
+	<input type="text" name="changes" id="change-list" style="display:none;">
+</div>
 </form>
+<style>
+	h4{
+		width:125px;
+	}
+</style>
+<script>
+	$(document).ready(function(){
+		$changeList = $("#change-list");
+		$("input, select").change(function(a,b,c){
+			$changeList.val($changeList.val()+";"+$(this).attr("name"));
+			console.log($changeList.val());
+		});
+	});
+</script>
