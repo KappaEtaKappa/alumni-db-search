@@ -1,5 +1,5 @@
 {{#each data}}
-<div class="result clearfix">
+<div class="result clearfix" onClick="loadMember('/member?number={{NUMBER}}')">
 	<span class="data-FIRST">{{{text FIRST NUMBER}}}</span>
 	<span class="data-LAST">{{{text LAST NUMBER}}}</span>
 	<span class="data-CHAPTER">{{{text CHAPTER NUMBER}}}</span>
@@ -7,8 +7,8 @@
 	<span class="data-FATHER">{{{text FATHER NUMBER}}}</span>
 	<span class="data-STATUS">{{{text STATUS NUMBER}}}</span>
 	<span class="data-GRADUATED">{{{date GRADUATED NUMBER}}}</span>
-	<span class="data-COMPANY">{{{text COMPANY NUMBER}}}</span>
 	<span class="data-STATE">{{{text STATE NUMBER}}}</span>
+	<span class="data-COMPANY">{{{text COMPANY NUMBER}}}</span>
 </div>
 {{/each}}
 <div id="load-more-container"><span id="load-more" data-last="{{last}}">Load 25 more</span></div>

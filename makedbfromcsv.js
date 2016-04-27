@@ -47,10 +47,38 @@ fs.readFile("data.csv", "utf8", function(err, data){
 			process.stdout.clearLine();
 			process.stdout.cursorTo(0);
 			process.stdout.write([spinner.current, "Processing..."].join(" "));
-		}, 1000);
+		}, 30);
 		var doneCount = 1;
 		db.serialize(function(){	
 			for(var i=1; i<data.length; i++){
+                        if(false){
+                              console.log("Entry: " + i);
+                              console.log("ID: ", orNaN(parseInt(data[i][0])) );
+                              console.log("ACCOUNT: ", orNaN(parseInt(data[i][1])) );
+                              console.log("CHAPTER: ", orNull(data[i][2]) );
+                              console.log("NUMBER: ", orNaN(parseInt(data[i][3])) );
+                              console.log("SUFFIX: ", orNull(data[i][4]) );
+                              console.log("LAST: ", orNull(data[i][5]) );
+                              console.log("FIRST: ", orNull(data[i][6]) );
+                              console.log("MIDDLE_INITIAL: ", orNull(data[i][7]) );
+                              console.log("ADDRESS: ", orNull(data[i][8]) );
+                              console.log("CITY: ", orNull(data[i][9]) );
+                              console.log("STATE: ", orNull(data[i][10]) );
+                              console.log("ZIP: ", orNull(data[i][11]) );
+                              console.log("HOME: ", orNull(data[i][12]) );
+                              console.log("COMPANY: ", orNull(data[i][13]) );
+                              console.log("TITLE: ", orNull(data[i][14]) );
+                              console.log("PHONE: ", orNull(data[i][15]) );
+                              console.log("EMAIL: ", orNull(data[i][16]) );
+                              console.log("SPOUSE: ", orNull(data[i][17]) );
+                              console.log("UPDATED: ", orNaN(new Date(data[i][18]).getTime()) );
+                              console.log("INITIATED: ", orNaN(new Date(data[i][19]).getTime()) );
+                              console.log("GRADUATION: ", orNaN(new Date(data[i][20]).getTime()) );
+                              console.log("FATHER: ", orNull(data[i][21]) );
+                              console.log("STATUS: ", orNull(data[i][22]) );
+                              console.log("MIDDLE_NAME: ", orNull(data[i][23]) );
+                              console.log("EMAIL_UPDATED: ", orNaN(new Date(data[i][25]).getTime()) );
+                        }
                                 var insert =    "INSERT INTO alumni (" +
                                                 "ID, " +
                                                 "ACCOUNT, " +
@@ -110,7 +138,7 @@ fs.readFile("data.csv", "utf8", function(err, data){
 					if(doneCount == data.length){
 						clearInterval(spinnerInv);
 						console.log("Done!");
-						console.log(doneCount + "entries inserted");
+						console.log(doneCount + " entries inserted");
 					}
 				});	
 			}
