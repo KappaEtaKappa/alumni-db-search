@@ -1,8 +1,110 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+	color: #00B7FF;
+}
+.base{
+	background: white;
+}
+#back-base{
+	z-index: 0;
+	height: 100vh;
+	position:fixed;
+	display: inline;
+}
+#search-base{
+	border-bottom: 2px solid purple;
+	padding-top: 60px;
+	padding-left: 0px;
+	padding-right: 0px;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	z-index: 10;
+	background: white;
+}
+#search-area{
+	margin-bottom: 15px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+.search-input{
+	font-size: 1em;
+	margin-right:3px;
+	text-align: center;
+}
+#result-base{
+	margin-top: 120px;
+}
+.result span{
+	padding-left: 10px;
+	padding-right: 10px;
+	font-size: 1em;
+	margin-right:3px;
+	text-align: center;
+}
+.result:nth-child(even){
+	background-color:#f2f2f2;
+
+}
+.result:hover{
+	background-color:#dd99ff !important;
+}
+#load-more {
+	display: inline-block;
+	padding: 0 15px;
+	position: relative;
+	cursor: pointer;
+}
+#load-more:hover{
+	color:#aa00ff;
+}
+#load-more:hover:before,
+#load-more:hover:after{
+	background:#aa00ff;
+}
+#load-more:before,
+#load-more:after {
+	background: #ddd;
+	content: "";
+	display: block;
+	height: 1px;
+	position: absolute;
+		top: 50%;
+	width: 400%;
+}
+#load-more:before {
+	right: 100%;
+}
+#load-more:after {
+	left: 100%;
+}
+#load-more-container {
+	overflow: hidden;
+	text-align: center;
+	display: block;
+}
+.truncated{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+
+/* member page */
+#member-photo{
+	width: 300px;
+}
+body{
+background: #632166;
+background: -moz-linear-gradient(left,  #632166 0%, #ffffff 25%, #ffffff 75%, #632166 100%);
+background: -webkit-linear-gradient(left,  #632166 0%,#ffffff 25%,#ffffff 75%,#632166 100%);
+background: linear-gradient(to right,  #632166 0%,#ffffff 25%,#ffffff 75%,#632166 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#632166', endColorstr='#632166',GradientType=1 );
+
+}
+.member-base{
+	padding-top: 120px;
 }

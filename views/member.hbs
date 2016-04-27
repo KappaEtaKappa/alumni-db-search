@@ -1,0 +1,68 @@
+<div id="search-base" class="col-md-12">
+	<div id="search-area"  class="col-md-10 col-md-offset-1 clearfix">
+	</div>
+</div>
+<div id="back-base" class="col-md-10 col-md-offset-1 base"></div>
+<div class="col-md-10 col-md-offset-1 base member-base">
+	<div class="col-md-4">
+		<img id="member-photo" src="/img/member/default.png">
+	</div>
+	<div class="col-md-8">
+		<h1 id="member-FIRST" class="inline">{{{text data.FIRST NUMBER}}}</h1>
+		<h2 id="member-LAST" class="inline">{{{text data.LAST NUMBER}}}</h2>
+	<br>
+		<h4 class="inline">Chapter&nbsp;&mdash;&nbsp;</h4>
+			<h3 id="member-CHAPTER" class="inline">{{{text data.CHAPTER NUMBER}}}</h3>
+		<br>
+		<h4 class="inline">Initiated&nbsp;&mdash;&nbsp;</h4>
+			<h3 id="member-INITIATED" class="inline">{{{date data.INITIATED NUMBER}}}</h3>
+		<br>
+		<h4 class="inline">Father&nbsp;&mdash;&nbsp;</h4>
+			<h3 id="member-FATHER" class="inline">{{{text data.FATHER NUMBER}}}</h3>
+		<br>
+		<h4 class="inline">Status&nbsp;&mdash;&nbsp;</h4>	
+			<h3 id="member-STATUS" class="inline">{{{text data.STATUS NUMBER}}}</h3>
+		<br>
+	</div>
+	<div class="col-md-4">
+		<h2>Contact</h2>
+		<h4 class="inline">Email&nbsp;&mdash;&nbsp;</h4>
+			<h3 id="member-EMAIL" class="inline">{{{text data.EMAIL NUMBER}}}</h3>
+		<br>
+		<h4 class="inline">Phone&nbsp;&mdash;&nbsp;</h4>
+			<h3 id="member-PHONE" class="inline">{{{text data.HOME NUMBER}}}</h3>
+		<br>
+		<h4 class="inline">Address&nbsp;&mdash;&nbsp;</h4>
+			<h3 id="member-ADDRESS" class="inline">{{{text data.ADDRESS NUMBER}}}&#13;&#10;{{{text data.CITY NUMBER}}}, {{{text data.STATE NUMBER}}} {{{text data.ZIP NUMBER}}}</h3>
+		<br>
+		
+	</div>
+	<div class="col-md-8">
+		<h4 class="inline">Graduate&nbsp;&mdash;&nbsp;</h4>	
+			<h3 id="member-GRADUATED" class="inline">{{{date data.GRADUATED NUMBER}}}</h3>
+		<br>
+		<h4 class="inline">State&nbsp;&mdash;&nbsp;</h4>
+			<h3 id="member-STATE" class="inline">{{{text data.STATE NUMBER}}}</h3>
+		<br>
+		<h4 class="inline">Company&nbsp;&mdash;&nbsp;</h4>
+			<h3 id="member-COMPANY" class="inline">{{{text data.COMPANY NUMBER}}}</h3>
+	</div>
+</div>
+
+<style type="text/css">
+	.inline{
+		display: inline-block;
+	}
+	h1{
+		font-size:5em;
+	}
+	h2{
+
+	}
+	h3{
+
+	}
+	h4{
+		color:gray;
+	}
+</style>
