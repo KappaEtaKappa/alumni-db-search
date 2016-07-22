@@ -1,4 +1,5 @@
 var fs = require("fs");
+
 var sqlite3 = require("sqlite3").verbose();
 var file = __dirname + "/alumni.sqlite";
 if (!fs.existsSync(file)) {
@@ -21,12 +22,21 @@ var users = require('./routes/users');
 
 var app = express();
 
+global.ssa = {};
+try {
+  global.ssa = require("../khk-ssa/khk-access/index.js")();
+} catch(e) {
+  console.log("Failed to contact khk-ssa, please clone it from the repo adjacent to this folder.");
+}
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 global.hbs.registerPartials(__dirname + '/views/partials');
 var helpers = require('./views/helpers')(global.hbs);
+
+
 
 
 // uncomment after placing your favicon in /public
@@ -38,8 +48,25 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function(req, res, next) {
+  if(!req.cookies.token){
+    res.redirect('http://localhost:1024')
+  }else{
+    global.ssa.getNavbar(req.cookies.token, "Roster", function(err, htmlStr){
+      if(err || !htmlStr) res.redirect('http://localhost:1024');
+      else{
+        res.locals.navbar = htmlStr;
+        console.log("nav-pre-next", res.locals.navbar)        
+        next();
+      }
+    });
+  }
+});
+
 app.use('/', routes);
 app.use('/users', users);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
