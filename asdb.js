@@ -50,10 +50,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req, res, next) {
   if(!req.cookies.token){
-    res.redirect('http://localhost:1024')
+    res.redirect('http://home.d.khk.org')
   }else{
     global.ssa.getNavbar(req.cookies.token, "Roster", function(err, htmlStr){
-      if(err || !htmlStr) res.redirect('http://localhost:1024');
+      if(err || !htmlStr) res.redirect('http://home.d.khk.org');
       else{
         res.locals.navbar = htmlStr;
         console.log("nav-pre-next", res.locals.navbar)        
