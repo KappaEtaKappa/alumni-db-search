@@ -48,20 +48,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function(req, res, next) {
-  if(!req.cookies.token){
-    res.redirect('http://home.d.khk.org')
-  }else{
-    global.ssa.getNavbar(req.cookies.token, "Roster", function(err, htmlStr){
-      if(err || !htmlStr) res.redirect('http://home.d.khk.org');
-      else{
-        res.locals.navbar = htmlStr;
-        console.log("nav-pre-next", res.locals.navbar)        
-        next();
-      }
-    });
-  }
-});
+app.use(ssa.navbar);
 
 app.use('/', routes);
 app.use('/users', users);

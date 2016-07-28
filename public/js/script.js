@@ -1,6 +1,9 @@
 //set the width of a column by the minumum required length
 function setByMaxWidth(className, forceWidth){
 	var resultRows = document.getElementsByClassName(className);
+	
+	if(!resultRows || resultRows.length == 0) return;
+
 	var max = 0;
 	//find the longest string we need to accomidate for 
 	if(forceWidth != undefined)
@@ -36,7 +39,7 @@ function setAllWidths(){
 	width += setByMaxWidth("data-STATE");
 	var comWidth = setByMaxWidth("data-COMPANY");
 
-	var maxWidth = $(".result")[0].offsetWidth
+	var maxWidth = $(".result")[0].offsetWidth;
 	comWidth = maxWidth-width-30;
 	var comRows = $(".data-COMPANY");
 	for(var c=0; c<comRows.length; c++){

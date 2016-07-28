@@ -36,7 +36,8 @@ a {
 	text-align: center;
 }
 #result-base{
-	margin-top: 120px;
+	padding-top: 120px;
+	height: 100vh;
 }
 .result{
 	cursor:pointer;

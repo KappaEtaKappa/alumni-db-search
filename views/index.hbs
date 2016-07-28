@@ -1,4 +1,3 @@
-{{{header}}}
 <div id="search-base" class="col-md-12">
 	<div id="search-area"  class="col-md-10 col-md-offset-1 clearfix">
 		<input class="search-input form-control input-sm" type="text" name="FIRST" placeholder="First"></input>
@@ -23,26 +22,36 @@
 	var searchInputs;
 
 	$(document).ready(function(){
-		setAllWidths();
-		setLoadMore();
+		setAllWidths();//sets column widths, call when rows are loaded
+		setLoadMore();//sets load more button on bottom
 		$(window).resize(setAllWidths);
 		searchInputs = $("input");
 		for(var i=0; i<searchInputs.length; i++)
 			searchInputs[i] = $(searchInputs[i]);
+		//on any input box change keyup
 		$("input").keyup(function(event){
-			console.log("changed!");
-			if(searchRequest)
-				searchRequest.abort()
-			var searchUrl = "/search?"
+			var emptySearch = true;
 			for(var i=0; i<searchInputs.length; i++)
-				if(searchInputs[i].val())
-					searchUrl += searchInputs[i].attr("name") + "=" + searchInputs[i].val() + "&"; 
-			searchRequest = $.get(searchUrl, function(data){
-				$("#result-area").html(data)
-                                $("#load-more-container").remove();
-				setAllWidths();
-                                setLoadMore();
-			});
+				if(searchInputs[i].val().trim()){
+					emptySearch = false;
+					break;
+				}
+
+			if(searchRequest)
+				searchRequest.abort();
+
+			if(!emptySearch){
+				var searchUrl = "/search?"
+				for(var i=0; i<searchInputs.length; i++)
+					if(searchInputs[i].val())
+						searchUrl += searchInputs[i].attr("name") + "=" + searchInputs[i].val() + "&"; 
+				searchRequest = $.get(searchUrl, function(data){
+					$("#result-area").html(data)
+	                $("#load-more-container").remove();
+					setAllWidths();
+	                setLoadMore();
+				});
+			}
 		});
 	});
 

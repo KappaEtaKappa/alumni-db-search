@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 		function(err, top10){
 			if(err) console.log(err, top10);
 			else{
-				res.render('index', { title: 'KHK Alumni Search', data: top10, last:top10[top10.length-1].NUMBER, error:err, header:res.locals.navbar});		
+				res.render('index', { title: 'KHK Alumni Search', data: top10, last:top10[top10.length-1].NUMBER, error:err});		
 			}
 		}
 	);
@@ -35,48 +35,48 @@ function searchif(name, input, firstTerm){
 	return "";
 }
 router.get('/search', function(req, res, next) {
-    var firstTerm = {hasOccurred:false};
+	var firstTerm = {hasOccurred:false};
 	var sqlSearch = "SELECT CHAPTER, NUMBER, LAST, FIRST, COMPANY, INITIATED,"+
-                " GRADUATION, FATHER, STATUS, STATE FROM alumni WHERE " +
+				" GRADUATION, FATHER, STATUS, STATE FROM alumni WHERE " +
 		searchif("FIRST", req.query.FIRST, firstTerm) +
 		searchif("LAST", req.query.LAST, firstTerm) +
 		searchif("COMPANY", req.query.COMPANY, firstTerm) +
-                searchif("FATHER", req.query.FATHER, firstTerm) +
-                searchif("STATUS", req.query.STATUS, firstTerm) +
-                searchif("STATE", req.query.STATE, firstTerm) +
-                searchif("CHAPTER", req.query.CHAPTER, firstTerm) +
+				searchif("FATHER", req.query.FATHER, firstTerm) +
+				searchif("STATUS", req.query.STATUS, firstTerm) +
+				searchif("STATE", req.query.STATE, firstTerm) +
+				searchif("CHAPTER", req.query.CHAPTER, firstTerm) +
 		searchif("INITIATED", new Date(req.query.INITIATED).getTime()/1000, firstTerm) +
 		" ORDER BY INITIATED DESC, NUMBER DESC LIMIT 25;";
 	console.log(sqlSearch);
-        db.all(sqlSearch, function(err, searchResult){
-                if(err) console.log(err);
-        	res.render('partials/results', {layout:false, data: searchResult});
-        });
+		db.all(sqlSearch, function(err, searchResult){
+				if(err) console.log(err);
+			res.render('partials/results', {layout:false, data: searchResult});
+		});
 });
 
 
 router.get('/help', function(req, res, next) {
-        var loggedIn = true
+	var loggedIn = true
 	var memberNo = parseInt(req.query.n);
 	
 	if(memberNo == null || isNaN(memberNo) || memberNo == undefined){
-		res.render('error', {message:"User not found!", error:{status:400, stack:""}, header:res.locals.navbar});
+		res.render('error', {message:"User not found!", error:{status:400, stack:""}});
 		return;
 	}
 
 	db.get( "SELECT * FROM alumni WHERE NUMBER="+memberNo+";", function(err, member){
-        	if(err){ console.log(err, member); res.render('err', {message:"Member Not found", error:{status:404, stack:""}, header:res.locals.navbar});}
+		if(err){ console.log(err, member); res.render('err', {message:"Member Not found", error:{status:404, stack:""}});}
 		for(var key in member)
 			member[key] = unescape(member[key]);
-		res.render('help', { data:member , header:res.locals.navbar});
-        });
+		res.render('help', { data:member });
+		});
 });
 
 router.get('/member', function(req, res, next) {
 	db.get( "SELECT * FROM alumni WHERE NUMBER = "+req.query.number+";",
 		function(err, member){
 			if(err) console.log(err, member);
-			res.render('member', { data: member, NUMBER:member.NUMBER , header:res.locals.navbar});		
+			res.render('member', { data: member, NUMBER:member.NUMBER });		
 		}
 	);
 });
