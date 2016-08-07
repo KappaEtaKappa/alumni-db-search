@@ -48,7 +48,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(ssa.navbar);
+app.use(ssa.navbar("Roster"));
 
 app.use('/', routes);
 app.use('/users', users);
