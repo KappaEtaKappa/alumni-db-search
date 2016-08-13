@@ -4,7 +4,7 @@ Type=forking
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/node /home/admin/khk-alumni-db/asdb.js
+ExecStart=/usr/bin/node /opt/khk-web/khk-alumni-db/asdb.js
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
 Restart=always
