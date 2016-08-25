@@ -185,6 +185,7 @@ roster.post('/accept_submission', function(req, res){
         if(err || !change) res.redirect("/submissions");
         else{
           db.run(change.SQL);
+          db.run("DELETE FROM changes WHERE id=?", req.body.NUMBER);
           res.redirect("/submissions");
         }
       });
