@@ -27,12 +27,16 @@ module.exports = function(Handlebars) {
 	});
 
 	Handlebars.registerHelper('datepicker', function(name, d){
+		var selected = "selected";
+		if(!d)
+			selected = "";
+		
 		var date = new Date(+d);
 		
 		var ret = "<select name='member-"+name+"-month'>";
 		for(var i=0; i<m.length; i++)
 			if(i == date.getMonth())
-				ret+= '<option  value="'+ i +'" selected>'+ m[i] +'</option>';
+				ret+= '<option  value="'+ i +'" '+selected+'>'+ m[i] +'</option>';
 			else
 				ret+= '<option  value="'+ i +'">'+ m[i] +'</option>';
 		ret+="</select>"
@@ -41,11 +45,27 @@ module.exports = function(Handlebars) {
 		ret += "<select name='member-"+name+"-year'>";
                 for(var i=currentYear; i>1923; i--)
                         if(i == date.getFullYear())
-                                ret+= '<option  value="'+ i +'" selected>'+ i +'</option>';
+                                ret+= '<option  value="'+ i +'" '+selected+'>'+ i +'</option>';
                         else
                                 ret+= '<option  value="'+ i +'">'+ i +'</option>';
                 ret+="</select>"		
 
 		return ret;
+	});
+
+	Handlebars.registerHelper('greater', function(v1, v2, options) {
+	  if(v1 > v2) {
+	    return options.fn(this);
+	  }
+	  return options.inverse(this);
+	});
+
+	Handlebars.registerHelper('parse', function(v1, options) {
+	    return options.fn(JSON.parse(v1));
+	});
+	Handlebars.registerHelper('exists', function(v1, options) {
+	    if(v1)
+	    	return true;
+    	return false;
 	});
 }

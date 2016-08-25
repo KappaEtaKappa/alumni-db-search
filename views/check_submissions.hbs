@@ -1,0 +1,84 @@
+<div id="search-base" class="col-md-12">
+	<div id="search-area"  class="col-md-10 col-md-offset-1 clearfix">
+</div>
+</div>
+<div id="back-base" class="col-md-10 col-md-offset-1 base"></div>
+<div class="col-md-10 col-md-offset-1 base member-base">
+{{#greater changes.length 0 }}
+	{{#each changes}}
+		<table class="change-display">
+			<tr>
+				<th>FIRST</th>
+				<th>LAST</th>
+				<th>CHAPTER</th>
+				<th>INITIATED</th>
+				<th>FATHER</th>
+				<th>STATUS</th>
+				<th>EMAIL</th>
+				<th>PHONE</th>
+				<th>ADDRESS</th>
+				<th>CITY</th>
+				<th>STATE</th>
+				<th>ZIP</th>
+				<th>GRADUATED</th>
+				<th>COMPANY</th>
+			</tr>
+			<tr>
+				{{#parse this.BEFORE}}
+					<td>{{{text FIRST ID}}}</td>
+					<td>{{{text LAST ID}}}</td>
+					<td>{{{text CHAPTER ID}}}</td>
+					<td>{{{date INITIATED ID}}}</td>
+					<td>{{{text FATHER ID}}}</td>
+					<td>{{{text STATUS ID}}}</td>
+					<td>{{{text EMAIL ID}}}</td>
+					<td>{{{text HOME ID}}}</td>
+					<td>{{{text ADDRESS ID}}}</td>
+					<td>{{{text CITY ID}}}</td>
+					<td>{{{text STATE ID}}}</td>
+					<td>{{{text ZIP ID}}}</td>
+					<td>{{{date GRADUATION ID}}}</td>
+					<td>{{{text COMPANY ID}}}</td>
+				{{/parse}}
+			</tr>
+			<tr>
+				{{#parse this.AFTER}}
+					<td>{{{FIRST}}}</td>
+					<td>{{{LAST}}}</td>
+					<td>{{{CHAPTER}}}</td>
+					<td>{{{date INITIATED}}}</td>
+					<td>{{{FATHER}}}</td>
+					<td>{{{STATUS}}}</td>
+					<td>{{{EMAIL}}}</td>
+					<td>{{{HOME}}}</td>
+					<td>{{{ADDRESS}}}</td>
+					<td>{{{CITY}}}</td>
+					<td>{{{STATE}}}</td>
+					<td>{{{ZIP}}}</td>
+					<td>{{{date GRADUATION}}}</td>
+					<td>{{{COMPANY}}}</td>
+				{{/parse}}
+			</tr>
+			<tr>
+				<td colspan="14" class="sql-preview">{{SQL}}</td>
+			</tr>
+			<tr class="change-choice">
+				<td colspan="7">
+					<form action="/accept_submission" method="POST">
+						<input type="hidden" name="NUMBER" value="{{ID}}">
+						<button>Accept</button>
+					</form>
+				</td>
+				<td colspan="7">
+					<form action="/reject_submission" method="POST">
+						<input type="hidden" name="NUMBER" value="{{ID}}">
+						<button>Reject</button>
+					</form>
+				</td>
+			</tr>
+		</table>		
+	{{/each}}
+{{else}}
+	<h4> There are no new change requests. </h4>
+{{/greater}}
+</div>

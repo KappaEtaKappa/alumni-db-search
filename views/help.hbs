@@ -6,64 +6,61 @@
 </div>
 <div id="back-base" class="col-md-10 col-md-offset-1 base"></div>
 <div class="col-md-10 col-md-offset-1 base member-base">
-	<div class="clearfix">
+	<div id="help-content" class="clearfix">
 		<div class="col-md-4">
 			<img id="member-photo" src="/img/member/default.png">
 		</div>
 		<div class="col-md-6">
-                        <h4 class="inline">First Name&nbsp;&mdash;&nbsp;</h4>
-                        <input type="text" name="member-FIRST" class="inline" value="{{data.FIRST}}">
-		<br>
-                        <h4 class="inline">Last Name&nbsp;&mdash;&nbsp;</h4>
-                        <input type="text" name="member-LAST" class="inline" value="{{data.LAST}}">
-		<br>
-			<h4 class="inline">Chapter&nbsp;&mdash;&nbsp;</h4>
-			<input type="text" name="member-CHAPTER" class="inline" value="{{data.CHAPTER}}">
-		<br>
-			<h4 class="inline">Initiated&nbsp;&mdash;&nbsp;</h4>
-			{{{datepicker "initiated" data.INITIATED}}} 
-		<br>
-			<h4 class="inline">Father&nbsp;&mdash;&nbsp;</h4>
-			<input type="text" name="member-FATHER" class="inline" value="{{data.FATHER}}">
-		<br>
-			<h4 class="inline">Status&nbsp;&mdash;&nbsp;</h4>
-			<input type="text" name="member-STATUS" class="inline" value="{{data.STATUS}}">
-		<br>
-			<h4 class="inline">Email&nbsp;&mdash;&nbsp;</h4>
-			<input type="text" name="member-EMAIL" class="inline" value="{{data.EMAIL}}">
-		<br>
-			<h4 class="inline">Phone&nbsp;&mdash;&nbsp;</h4>
-			<input type="text" name="member-PHONE" class="inline" value="{{data.HOME}}">
-		<br>
-			<h4 class="inline">Address&nbsp;&mdash;&nbsp;</h4>
-			<input type="text" name="member-ADDRESS" class="inline" value="{{data.ADDRESS}}">
-		<br>
-			<h4 class="inline">Citys&nbsp;&mdash;&nbsp;</h4>
-			<input type="text" name="member-CITY" class="inline" value="{{data.CITY}}">
-		<br>
-			<h4 class="inline">State&nbsp;&mdash;&nbsp;</h4>	
-			<input type="text" name="member-STATE" class="inline" value="{{data.STATE}}">
-		<br>
-			<h4 class="inline">ZIP&nbsp;&mdash;&nbsp;</h4>
-			<input type="text" name="member-ZIP" class="inline" value="{{data.ZIP}}">
-		<br>
-			<h4 class="inline">Graduate&nbsp;&mdash;&nbsp;</h4>
-			{{{datepicker "graduated" data-GRADUATED}}}
-		<br>
-			<h4 class="inline">State&nbsp;&mdash;&nbsp;</h4>
-			<input type="text" name="member-STATE" class="inline" value="{{data.STATE}}">
-		<br>
-			<h4 class="inline">Company&nbsp;&mdash;&nbsp;</h4>
-			<input type="text" name="member-COMPANY" class="inline" value="{{data.COMPANY}}">
-		</div>
-		<div class="col-md-2">
-			<input type="text" name="editor" placeholder="Your Email">
+	            <h4 class="inline">First Name</h4>
+	            <input type="text" name="member-FIRST" class="inline" value="{{data.FIRST}}">
 			<br>
+	            <h4 class="inline">Last Name</h4>
+	            <input type="text" name="member-LAST" class="inline" value="{{data.LAST}}">
 			<br>
-			<input type="submit">
+				<h4 class="inline">Chapter</h4>
+				<input type="text" name="member-CHAPTER" class="inline" value="{{data.CHAPTER}}">
+			<br>
+				<h4 class="inline">Initiated</h4>
+				<br>
+				{{{datepicker "initiated" data.INITIATED}}} 
+			<br>
+				<h4 class="inline">Father</h4>
+				<input type="text" name="member-FATHER" class="inline" value="{{data.FATHER}}">
+			<br>
+				<h4 class="inline">Status</h4>
+				<input type="text" name="member-STATUS" class="inline" value="{{data.STATUS}}">
+			<br>
+				<h4 class="inline">Email</h4>
+				<input type="text" name="member-EMAIL" class="inline" value="{{data.EMAIL}}">
+			<br>
+				<h4 class="inline">Phone</h4>
+				<input type="text" name="member-HOME" class="inline" value="{{data.HOME}}">
+			<br>
+				<h4 class="inline">Address</h4>
+				<input type="text" name="member-ADDRESS" class="inline" value="{{data.ADDRESS}}">
+			<br>
+				<h4 class="inline">City</h4>
+				<input type="text" name="member-CITY" class="inline" value="{{data.CITY}}">
+			<br>
+				<h4 class="inline">State</h4>	
+				<input type="text" name="member-STATE" class="inline" value="{{data.STATE}}">
+			<br>
+				<h4 class="inline">ZIP</h4>
+				<input type="text" name="member-ZIP" class="inline" value="{{data.ZIP}}">
+			<br>
+				<h4 class="inline">Graduation Date</h4>
+				<br>
+				{{{datepicker "graduated" data-GRADUATED}}}
+			<br>
+				<h4 class="inline">Company</h4>
+				<input type="text" name="member-COMPANY" class="inline" value="{{data.COMPANY}}">
+			<br>
+				<input type="submit">
 		</div>
 	</div>
-	<input type="text" name="changes" id="change-list" style="display:none;">
+	<input type="hidden" name="member_id" value="{{data.NUMBER}}">
+	<input type="hidden" name="initDateChanged" value="{{{exists data.INITIATED}}}">
+	<input type="hidden" name="gradDateChanged" value="{{{exists data-GRADUATED}}}">
 </div>
 </form>
 <style>
@@ -73,10 +70,13 @@
 </style>
 <script>
 	$(document).ready(function(){
-		$changeList = $("#change-list");
-		$("input, select").change(function(a,b,c){
-			$changeList.val($changeList.val()+";"+$(this).attr("name"));
-			console.log($changeList.val());
+		$("select[name='member-graduated-*']").change(function(a,b,c){
+			$("gradDateChanged").val(true);			
+			console.log("grad", $("gradDateChanged").val());
+		});
+		$("select[name='member-initiated-*']").change(function(a,b,c){
+			$("initDateChanged").val(true);			
+			console.log("grad", $("initDateChanged").val());
 		});
 	});
 </script>

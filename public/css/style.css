@@ -122,3 +122,33 @@ h1{
 h4{
 	color:gray;
 }
+
+#help-content input[type="text"], #help-content h4{
+	display: inline-block;
+	width: 100%;
+}
+#help-content input[type="submit"]{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	float: right;
+}
+
+.change-display th{
+	background-color: #ccc;
+	border: 1px solid black;
+	text-align: center;
+	vertical-align: middle;
+}
+.change-display td{
+	border: 1px solid black;
+	text-align: center;
+	vertical-align: middle;
+}
+.sql-preview{
+	text-align: left!important;
+	padding: 5px;
+}
+.change-choice td{
+	padding-top: 5px;
+	border: 0px;
+}

@@ -11,12 +11,12 @@ var spin = require('term-spinner');
 var spinner = spin.new("◐◓◑◒");
 function orNull(s){
 	if(s.length == 0)
-		return "NULL"
+		return null
 	return "'" + escape(s) + "'";
 }
 function orNaN(i){
 	if(isNaN(i))
-		return "NULL";
+		return null;
 	return i;
 }
 
@@ -24,7 +24,8 @@ db.serialize(function() {
 	if(exists)
 		db.run("DROP TABLE alumni;");
 
-	db.run("CREATE TABLE alumni (ID INTEGER );");
+      db.run("CREATE TABLE alumni (ID INTEGER);");
+	db.run("CREATE TABLE changes (ID INTEGER, BEFORE BLOB, AFTER BLOB, SQL BLOB);");
 });
 
 fs.readFile("data.csv", "utf8", function(err, data){
