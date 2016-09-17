@@ -62,21 +62,17 @@
 			<tr>
 				<td colspan="14" class="sql-preview">{{SQL}}</td>
 			</tr>
-			<tr class="change-choice">
-				<td colspan="7">
-					<form action="/accept_submission" method="POST">
-						<input type="hidden" name="NUMBER" value="{{ID}}">
-						<button>Accept</button>
-					</form>
-				</td>
-				<td colspan="7">
-					<form action="/reject_submission" method="POST">
-						<input type="hidden" name="NUMBER" value="{{ID}}">
-						<button>Reject</button>
-					</form>
-				</td>
-			</tr>
-		</table>		
+		</table>
+		<div class="change-choice">
+			<form action="/accept_submission" method="POST">
+				<input type="hidden" name="NUMBER" value="{{ID}}">
+				<button>Accept</button>
+			</form>
+			<form action="/reject_submission" method="POST">
+				<input type="hidden" name="NUMBER" value="{{ID}}">
+				<button>Reject</button>
+			</form>
+		</div>		
 	{{/each}}
 {{else}}
 	<h4> There are no new change requests. </h4>

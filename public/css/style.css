@@ -25,6 +25,11 @@ a {
 	z-index: 10;
 	background: white;
 }
+@media only screen and (max-width: 1080px) {
+	#search-base{
+		padding-top:90px;
+	}
+}
 #search-area{
 	margin-bottom: 15px;
 	padding-left: 30px;
@@ -36,7 +41,7 @@ a {
 	text-align: center;
 }
 #result-base{
-	padding-top: 120px;
+	padding-top: 70px;
 	height: 100vh;
 }
 .result{
@@ -133,6 +138,9 @@ h4{
 	float: right;
 }
 
+.change-display{
+	
+}
 .change-display th{
 	background-color: #ccc;
 	border: 1px solid black;
@@ -148,7 +156,8 @@ h4{
 	text-align: left!important;
 	padding: 5px;
 }
-.change-choice td{
-	padding-top: 5px;
-	border: 0px;
+.change-choice form{
+	margin-top:5px;
+	margin-bottom: 15px;
+	display:inline-block;
 }

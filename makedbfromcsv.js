@@ -1,3 +1,9 @@
+console.log("I really dont think you are trying to run this script");
+console.log("and if you really are, that's unfortunate.")
+console.log("This will wipe and reset the production(repo'd)");
+console.log("DB to the original build off of JPep's Excell sheet");
+process.exit(1);
+
 var sqlite3 = require('sqlite3').verbose();
 var csv_parse = require('csv-parse');
 
