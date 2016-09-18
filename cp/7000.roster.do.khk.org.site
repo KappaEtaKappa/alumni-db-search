@@ -15,21 +15,3 @@ server {
         server_name roster-admin.delta.khk.org;
         return 301 http://roster.delta.khk.org/submissions;
 }
-
-server {
-        listen 80;
-        
-        server_name roster.do.khk.org;
-
-        location / {
-		proxy_set_header Host $host;
-		proxy_set_header X-Real-IP $remote_addr;
-		proxy_pass http://127.0.0.1:7000;
-	}
-}
-
-server {
-        listen 80;
-        server_name roster-admin.do.khk.org;
-        return 301 http://roster.do.khk.org/submissions;
-}
