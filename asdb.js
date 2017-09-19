@@ -191,6 +191,7 @@ roster.post('/accept_submission', function(req, res){
       });
   });
 });
+
 roster.post('/reject_submission', function(req, res){
   ssa.getPriviledgeLevel(req.cookies.token, function(err, privLevel){
     if(err || isNaN(privLevel) || privLevel < 2) res.render("thank");
@@ -201,7 +202,6 @@ roster.post('/reject_submission', function(req, res){
   });
 });
 
-
 roster.get('/member', function(req, res, next) {
   db.get( "SELECT * FROM alumni WHERE NUMBER = ?;", req.query.number,
     function(err, member){
@@ -211,6 +211,9 @@ roster.get('/member', function(req, res, next) {
   );
 });
 
+roster.get('/backup', function(req, res){
+  res.download(__dirname + '/alumni.sqlite', (new Date()).toISOString()+'.sqlite');
+});
 
 // catch 404 and forward to error handler
 roster.use(function(req, res, next) {

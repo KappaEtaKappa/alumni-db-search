@@ -15,3 +15,9 @@ server {
         server_name roster-admin.delta.khk.org;
         return 301 http://roster.delta.khk.org/submissions;
 }
+
+server {
+        listen 80;
+        server_name roster-backup.delta.khk.org;
+        return 301 http://roster.delta.khk.org/backup;
+}
