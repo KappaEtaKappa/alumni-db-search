@@ -1,5 +1,5 @@
 {
-  "name": "alumni-db-search",
+  "name": "the.delta.khk.org",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -15,7 +15,7 @@
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0",
     "sql-injection": "0.0.5",
-    "sqlite3": "^3.1.11",
+    "sqlite": "^3.1.11",
     "term-spinner": "^1.0.0"
   }
 }
